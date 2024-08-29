@@ -7,12 +7,12 @@ all_fight_links = []
 with open('fights_overview.csv', 'r', newline='') as file:
     csv_reader = csv.reader(file)
     for row in csv_reader:
-        all_fight_links = all_fight_links + [row[12]]
+        all_fight_links = all_fight_links + [row[14]]
 num_fights = len(all_fight_links)
 
 with open('rounds.csv', 'w', newline='') as csvfile:
     writer = csv.writer(csvfile)
-    field =  ["round_id", "event_name","round","fighter_name", "kd", "ts_landed"] 
+    field =  ["round_id", "event_name","round", "fighter_link", "fighter_name", "kd", "ts_landed"] 
     field = field + ["ts_attempted","td_landed","td_attempted"] 
     field = field + ["sub_attempted","rev","control","ss_landed"] 
     field = field + ["ss_attempted","head_ss_attempted","head_ss_landed"] 
@@ -48,7 +48,9 @@ with open('rounds.csv', 'w', newline='') as csvfile:
             names = (soup.find_all("a", class_="b-link"))
             fight_name = names[0].text.strip()
             f_1_name = names[1].text.strip()
+            fighter_1_link = names[1].get("href")
             f_2_name = names[2].text.strip()
+            fighter_2_link = names[2].get("href")
 
             fight_stats_top = (rounds[round[0]])
             fight_stats_bottom = rounds[round[1]-1]
@@ -123,7 +125,7 @@ with open('rounds.csv', 'w', newline='') as csvfile:
             
             round_id = round_id + 1
 
-            fighter_1 = [round_id] + [fight_name] + [current_round] + [f_1_name] + [f_1_kd] + [f_1_ts_landed] 
+            fighter_1 = [round_id] + [fight_name] + [current_round] + [fighter_1_link] +[f_1_name] + [f_1_kd] + [f_1_ts_landed] 
             fighter_1 = fighter_1 + [f_1_ts_attempted] + [f_1_td_landed] + [f_1_td_attempted] 
             fighter_1 = fighter_1 + [f_1_sub_attempted] + [f_1_rev] + [f_1_control] + [f_1_ss_landed] 
             fighter_1 = fighter_1 + [f_1_ss_attempted] + [f_1_head_ss_attempted] + [f_1_head_ss_landed] 
@@ -133,7 +135,7 @@ with open('rounds.csv', 'w', newline='') as csvfile:
 
             round_id = round_id + 1
             
-            fighter_2 = [round_id] + [fight_name] + [current_round] + [f_2_name] + [f_2_kd] + [f_2_ts_landed] 
+            fighter_2 = [round_id] + [fight_name] + [current_round] + [fighter_2_link] + [f_2_name] + [f_2_kd] + [f_2_ts_landed] 
             fighter_2 = fighter_2 + [f_2_ts_attempted] + [f_2_td_landed] + [f_2_td_attempted] 
             fighter_2 = fighter_2 + [f_2_sub_attempted] + [f_2_rev] + [f_2_control] + [f_2_ss_landed] 
             fighter_2 = fighter_2 + [f_2_ss_attempted] + [f_2_head_ss_attempted] + [f_2_head_ss_landed] 
