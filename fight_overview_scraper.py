@@ -29,7 +29,7 @@ processed = 0
 
 with open('fights_overview.csv', 'w', newline='') as csvfile:
     writer = csv.writer(csvfile)
-    field = ["fight_id", "event_name", "fighter_1", "fighter_1_result", "fighter_2", "fighter_2_result"]
+    field = ["fight_id", "event_name", "fighter_1_link", "fighter_1", "fighter_1_result","fighter_2_link", "fighter_2", "fighter_2_result"]
     field = field + ["bout_type", "method", "end_round", "end_time_round", "max_round", "referee", "fight_link"]
     
     writer.writerow(field)
@@ -52,7 +52,9 @@ with open('fights_overview.csv', 'w', newline='') as csvfile:
             event_name = event_name.replace('\n','').strip()
             fighters = (fight_soup.find_all(class_='b-fight-details__person-link'))
             fighter_1 = (fighters[0]).text.strip()
+            fighter_1_link = fighters[0].get("href")
             fighter_2 = (fighters[1]).text.strip()
+            fighter_2_link = fighters[1].get("href")
 
             fighter_1_result = (fight_soup.find_all(class_="b-fight-details__person-status")[0]).text
             fighter_1_result = fighter_1_result.replace('\n','').strip()
@@ -81,7 +83,7 @@ with open('fights_overview.csv', 'w', newline='') as csvfile:
             referee = (info[3]).text.strip()
             referee = (referee[20:]).strip()
 
-            overview = [str(fight_id)] + [event_name] + [fighter_1] + [fighter_1_result] + [fighter_2] + [fighter_2_result]
+            overview = [str(fight_id)] + [event_name] + [fighter_1_link] + [fighter_1] + [fighter_1_result] + [fighter_2_link] + [fighter_2] + [fighter_2_result]
             overview = overview + [weight_class] + [method] + [end_round] + [end_time_round] + [max_round] + [referee] + [i]
             writer.writerow(overview)
             print(processed)
