@@ -50,9 +50,9 @@ k <- 30
     loser_new_elo <- loser_new_elo$elo[1]
   }
 ```
-Using [data I scraped](https://github.com/nthiens/UFCWebScraper) from www.ufcstats.com, I was able to extract all the fight information and outcomes then applied the formula.
+Using [data I scraped](https://github.com/nthiens/UFC-Data-Analytics/tree/main/1.%20Web%20Scraping) from www.ufcstats.com, I was able to extract all the fight information and outcomes then applied the formula.
 
-The full R code can be found [here](https://github.com/nthiens/UFCDataAnalysis/blob/main/elo.R). Make sure to import events.csv, fighters.csv, and fights_overview.csv.
+The full R code can be found [here](https://github.com/nthiens/UFC-Data-Analytics/blob/main/2.%20Elo/elo.R). Make sure to import events.csv, fighters.csv, and fights_overview.csv.
 
 To get in depth Elo information use the function
 *get_elo_specific(start_date, end_date, min_weight, max_weight, elo_data, criteria, max_rank)*.
