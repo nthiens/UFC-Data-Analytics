@@ -10,7 +10,7 @@ Newly signed fighters start off unranked and after winning enough fights, may be
 
 Its not a reach to say that the UFC indirectly or even directly creates the ranking themselves. We can see glaring examples of favoritism with big names like Jon Jones being ranked #3 pound for pound despite only fighting twice in the past 4 years.
 
-![Jon Jones two most recent fights](https://raw.githubusercontent.com/nthiens/UFCDataAnalysis/main/jon%20jones.PNG)
+![Jon Jones two most recent fights](https://github.com/nthiens/UFC-Data-Analytics/blob/main/2.%20Elo/jon%20jones.PNG?raw=true)
 
 There are several motivating factors on why it would be in the UFC’s favor to control the rankings.
 
@@ -62,7 +62,7 @@ To get in depth Elo information use the function
 - criteria is either **"latest"** or **"peak"** which specifies whether to use most recent elo or highest elo given the date range.
 - max_rank shows the number of fighters shown. Maximum is **20**.
 ## Results
-![Real rankings vs Elo rankings](https://raw.githubusercontent.com/nthiens/UFCDataAnalysis/main/rankings.png)
+![Real rankings vs Elo rankings](https://github.com/nthiens/UFC-Data-Analytics/blob/main/2.%20Elo/ufcpic.png)
 
 Note that I have omitted the rankings for featherweight and below. This is because featherweights and lower weight classes are shared between men and women and there is no data from the UFC website to differentiate between fighter's gender. The date range used was 2023-08-25 to 2024-08-24.
 
