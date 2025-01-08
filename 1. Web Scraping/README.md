@@ -1,4 +1,4 @@
 # UFC Web Scraper
-*Stats are accurate up to and including August 24th 2024 
+*Stats are accurate up to and including December 31st 2024 
 
-Data scraped from www.ufcstats.com
+Data scraped from www.ufcstats.com and https://en.wikipedia.org/wiki/List_of_UFC_events
