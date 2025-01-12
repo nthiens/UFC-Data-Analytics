@@ -131,6 +131,10 @@ all_elo <- all_elo %>% select(fighter_link, name.y, weight, elo, date)
 names(all_elo)[names(all_elo) == "name.y"] <- "name"
 all_elo
 
+## Export as CSV###################################
+write.csv(all_elo, "E:\\Downloads\\elo.csv", row.names = FALSE, quote = FALSE)
+###################################################
+
 get_elo_specific <- function(start_date, end_date, min_weight, max_weight, elo_data, criteria, max_rank) {
   date_range <- elo_data[elo_data$date >= start_date,]
   date_range <- date_range[date_range$date <= end_date,]
