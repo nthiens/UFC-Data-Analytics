@@ -129,7 +129,23 @@ names(all_elo)[names(all_elo) == "fighter_id"] <- "fighter_link"
 all_elo <- inner_join(all_elo, fighters, by = "fighter_link")
 all_elo <- all_elo %>% select(fighter_link, name.y, weight, elo, date)
 names(all_elo)[names(all_elo) == "name.y"] <- "name"
-all_elo
+all_elo <- inner_join(all_elo, fighters, by = "fighter_link")
+all_elo <- all_elo[, c("fighter_id", "fighter_link", "name.x", "elo", "date")]
+names(all_elo) <- c("fighter_id", "fighter_link", "name", "elo", "date")
+
+all_fights <- fights_overview
+all_fights[, c(3, 6)] <- all_fights[, c(6, 3)] 
+all_fights[, c(4, 7)] <- all_fights[, c(7, 4)] 
+all_fights[, c(5, 8)] <- all_fights[, c(8, 5)] 
+all_fights <- rbind(all_fights, fights_overview)
+
+all_fights <- inner_join(all_fights, events, by = "event_name")
+all_fights$date <- as.Date(all_fights$date)
+class(all_fights$date)
+
+all_elo <- inner_join(all_fights, all_elo, by = c("fighter_1_link" = "fighter_link", "date"))
+all_elo <- all_elo[, c(1, 2, 3, 4, 5, 10, 6, 7, 17, 28)]
+colnames(all_elo)[colnames(all_elo) == "elo"] <- "fighter_1_elo"
 
 ## Export as CSV###################################
 write.csv(all_elo, "E:\\Downloads\\elo.csv", row.names = FALSE, quote = FALSE)
